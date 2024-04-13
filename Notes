@@ -1,2 +1,28 @@
 DeSerialisation -> process of converting a json string to an object
 Serialisation -> process for converting an object to a json string
+
+
+Controller -> Input -> DTO, Output -> DTO, Downstream(service) -> DTO
+controller only deals with DTOs
+
+Service -> Input -> DTO, Output -> DTO, DownStream(Repository) -> Entity
+layer at which dto to entity, or entity to dto conversion happens
+conversion can be part of business logic
+
+Repository -> Input -> Entity, Output -> Entity, DB saves Entity
+
+Client -> Input -> DTO, Output -> DTO, all DTO
+
+
+Small project, with few controller and fewer methods, single controller
+advice class is ok
+
+For bigger projects, we should have controller specific controller advice
+classes
+
+
+HW ->
+Create 2 APIs, 1 in product controller, 1 in cart controller
+make both of them return same custom exception
+add 2 handler methods in each advice classes for that exception, and check
+the code flow

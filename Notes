@@ -26,3 +26,9 @@ Create 2 APIs, 1 in product controller, 1 in cart controller
 make both of them return same custom exception
 add 2 handler methods in each advice classes for that exception, and check
 the code flow
+
+
+20/04/2024--------------------------------------------------------------
+ProductService -> FakeStorePSImpl, PSImpl, MongoDBPSImpl, AWSPSImpl
+
+ProductController -> ProductService[PSImpl]

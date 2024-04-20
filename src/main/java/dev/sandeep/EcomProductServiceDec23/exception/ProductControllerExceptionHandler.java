@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ProductControllerExceptionHandler {
 
     @ExceptionHandler({ProductNotFoundException.class, NoProductPresentException.class})
-    public ResponseEntity handleNoProductException(ProductNotFoundException pe) {
+    public ResponseEntity handleNoProductException(ProductPresentException pe) {
         ExceptionResponseDTO exceptionResponseDTO = new ExceptionResponseDTO(
                 pe.getMessage(),
                 404
@@ -26,5 +26,14 @@ public class ProductControllerExceptionHandler {
                 400
         );
         return new ResponseEntity<>(exceptionResponseDTO, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RandomException.class)
+    public ResponseEntity handleProductRandomException(RandomException pe){
+        ExceptionResponseDTO exceptionResponseDTO = new ExceptionResponseDTO(
+                pe.getMessage(),
+                404
+        );
+        return new ResponseEntity<>(exceptionResponseDTO, HttpStatus.NOT_FOUND);
     }
 }

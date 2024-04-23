@@ -1,7 +1,7 @@
 package dev.sandeep.EcomProductServiceDec23.controller;
 
 import dev.sandeep.EcomProductServiceDec23.client.FakeStoreClient;
-import dev.sandeep.EcomProductServiceDec23.dto.FakeStoreCartResponseDTO;
+import dev.sandeep.EcomProductServiceDec23.dto.fakeStoreDTOs.FakeStoreCartResponseDTO;
 import dev.sandeep.EcomProductServiceDec23.exception.CartNotFoundException;
 import dev.sandeep.EcomProductServiceDec23.exception.RandomException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ *  Cart controller was only created to showcase the use of controller advice, in this code we are not doing
+ *  anything related to cart.
+ */
 @RestController
 public class CartController {
 

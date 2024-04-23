@@ -1,7 +1,7 @@
 package dev.sandeep.EcomProductServiceDec23.service;
 
 import dev.sandeep.EcomProductServiceDec23.client.FakeStoreClient;
-import dev.sandeep.EcomProductServiceDec23.dto.FakeStoreProductResponseDTO;
+import dev.sandeep.EcomProductServiceDec23.dto.fakeStoreDTOs.FakeStoreProductResponseDTO;
 import dev.sandeep.EcomProductServiceDec23.entity.Product;
 import dev.sandeep.EcomProductServiceDec23.exception.NoProductPresentException;
 import dev.sandeep.EcomProductServiceDec23.exception.ProductNotFoundException;

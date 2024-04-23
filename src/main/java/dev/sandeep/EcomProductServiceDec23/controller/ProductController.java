@@ -1,5 +1,7 @@
 package dev.sandeep.EcomProductServiceDec23.controller;
 
+import dev.sandeep.EcomProductServiceDec23.dto.CreateProductRequestDTO;
+import dev.sandeep.EcomProductServiceDec23.dto.ProductResponseDTO;
 import dev.sandeep.EcomProductServiceDec23.entity.Product;
 import dev.sandeep.EcomProductServiceDec23.exception.InvalidInputException;
 import dev.sandeep.EcomProductServiceDec23.service.ProductService;
@@ -20,41 +22,38 @@ public class ProductController {
     private ProductService productService; // field injection
 
     @GetMapping
-    public ResponseEntity getAllProducts(){
-        List<Product> products = productService.getAllProducts();
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(){
+        List<ProductResponseDTO> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getProductById(@PathVariable("id") UUID id){
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable("id") UUID id){
         if(id == null){
             throw new InvalidInputException("Input is not correct");
         }
-        Product product = productService.getProduct(id);
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok(productService.getProduct(id));
     }
 
     @PostMapping
-    public ResponseEntity createProduct(@RequestBody Product product){
-        Product savedProduct = productService.createProduct(product);
-        return ResponseEntity.ok(savedProduct);
+    public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody CreateProductRequestDTO productRequestDTO){
+        return ResponseEntity.ok(productService.createProduct(productRequestDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateProduct(@PathVariable("id") UUID id, @RequestBody Product product){
-        Product updatedProduct = productService.updateProduct(product, id);
-        return ResponseEntity.ok(updatedProduct);
+    public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable("id") UUID id, @RequestBody CreateProductRequestDTO productRequestDTO){
+        return ResponseEntity.ok(productService.updateProduct(productRequestDTO, id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteProduct(@PathVariable("id") UUID id){
+    public ResponseEntity<Boolean> deleteProduct(@PathVariable("id") UUID id){
         return ResponseEntity.ok(
                 productService.deleteProduct(id)
         );
     }
 
     @GetMapping("/name/{productName}")
-    public ResponseEntity getProductByProductName(@PathVariable("productName") String productName){
+    public ResponseEntity<ProductResponseDTO> getProductByProductName(@PathVariable("productName") String productName){
         return ResponseEntity.ok(
                 productService.getProduct(productName)
         );

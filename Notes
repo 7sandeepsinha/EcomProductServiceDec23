@@ -32,3 +32,34 @@ the code flow
 ProductService -> FakeStorePSImpl, PSImpl, MongoDBPSImpl, AWSPSImpl
 
 ProductController -> ProductService[PSImpl]
+
+
+27/04/2024--------------------------------------------------------------
+CID     ProductId       Price
+1           1           10
+2           2           20
+1           3           30
+1           4           40
+
+total price for all the products for categoryID 1 -> 80
+
+localhost:8080/category/price/id -> fetches all products for a given category id, and returns the sum of prices
+
+
+@Before -> used for setting up test env
+---- runs only once when we are executing the tests in the class
+@After -> used for destroying the test env
+---- runs only once after we are executing the tests in the class
+
+@BeforeEach -> used for setting up for all tests
+-- run before every test case
+@AfterEach -> used for destroying for all
+-- run after every test case
+
+
+3 test cases in a class
+
+@Before -  1
+@After - 1
+@BeforeEach - 3
+@AfterEach - 3

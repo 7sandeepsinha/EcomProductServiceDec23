@@ -1,9 +1,12 @@
 package dev.sandeep.EcomProductServiceDec23.service;
 
+import dev.sandeep.EcomProductServiceDec23.client.FakeStoreClient;
+import dev.sandeep.EcomProductServiceDec23.dto.fakeStoreDTOs.FakeStoreProductResponseDTO;
 import dev.sandeep.EcomProductServiceDec23.entity.Category;
 import dev.sandeep.EcomProductServiceDec23.entity.Product;
 import dev.sandeep.EcomProductServiceDec23.exception.CategoryNotFoundException;
 import dev.sandeep.EcomProductServiceDec23.repository.CategoryRepository;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +24,9 @@ public class CategoryServiceImplTest {
 
     @Mock // @Mock for all dependencies
     private CategoryRepository categoryRepository;
+
+//    @Mock
+//    private FakeStoreClient fakeStoreClient;
 
     @InjectMocks // @InjectMocks for the actual class we are testing
     private CategoryServiceImpl categoryService;
@@ -51,8 +57,10 @@ public class CategoryServiceImplTest {
     public void testGetTotalPriceForZeroProductsUnderCategory(){
         //ARRANGE
         UUID categoryId = UUID.randomUUID();
+        ArrayList<FakeStoreProductResponseDTO> fakeStoreProductResponseDTOS = new ArrayList<>();
         Optional<Category> categoryOptionalMockData = getCategoryMockDataWithZeroProducts();
         Mockito.when(categoryRepository.findById(categoryId)).thenReturn(categoryOptionalMockData);
+        //Mockito.when(fakeStoreClient.getAllProducts()).thenReturn(fakeStoreProductResponseDTOS);
         double expectedTotalCost = 0.0;
 
         //ACT

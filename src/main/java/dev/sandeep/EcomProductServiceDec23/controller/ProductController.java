@@ -2,7 +2,6 @@ package dev.sandeep.EcomProductServiceDec23.controller;
 
 import dev.sandeep.EcomProductServiceDec23.dto.CreateProductRequestDTO;
 import dev.sandeep.EcomProductServiceDec23.dto.ProductResponseDTO;
-import dev.sandeep.EcomProductServiceDec23.entity.Product;
 import dev.sandeep.EcomProductServiceDec23.exception.InvalidInputException;
 import dev.sandeep.EcomProductServiceDec23.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

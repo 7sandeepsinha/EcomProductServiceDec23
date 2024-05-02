@@ -1,5 +1,6 @@
 package dev.sandeep.EcomProductServiceDec23.controller;
 
+import dev.sandeep.EcomProductServiceDec23.client.FakeStoreClient;
 import dev.sandeep.EcomProductServiceDec23.dto.CategoryResponseDTO;
 import dev.sandeep.EcomProductServiceDec23.dto.CreateCategoryRequestDTO;
 import dev.sandeep.EcomProductServiceDec23.service.CategoryService;
@@ -34,7 +35,7 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryResponseDTO> updateCategory(@PathVariable("id") UUID categoryId, @RequestBody CreateCategoryRequestDTO createCategoryRequestDTO){
+    public ResponseEntity<CategoryResponseDTO> updateCategory(@PathVariable("id") UUID categoryId, @RequestBody CreateCategoryRequestDTO createCategoryRequestDTO) throws Exception {
         return ResponseEntity.ok(categoryService.updateCategory(createCategoryRequestDTO, categoryId));
     }
 

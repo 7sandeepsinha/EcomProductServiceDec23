@@ -1,7 +1,9 @@
 package dev.sandeep.EcomProductServiceDec23.service;
 
+import dev.sandeep.EcomProductServiceDec23.client.FakeStoreClient;
 import dev.sandeep.EcomProductServiceDec23.dto.CategoryResponseDTO;
 import dev.sandeep.EcomProductServiceDec23.dto.CreateCategoryRequestDTO;
+import dev.sandeep.EcomProductServiceDec23.dto.fakeStoreDTOs.FakeStoreProductResponseDTO;
 import dev.sandeep.EcomProductServiceDec23.entity.Category;
 import dev.sandeep.EcomProductServiceDec23.entity.Product;
 import dev.sandeep.EcomProductServiceDec23.exception.CategoryNotFoundException;
@@ -19,6 +21,8 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    private FakeStoreClient fakeStoreClient;
 
     @Override
     public CategoryResponseDTO getCategory(UUID categoryId) {
@@ -55,6 +59,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public double getTotalPriceForCategory(UUID categoryId) {
+        List<FakeStoreProductResponseDTO> productResponseDTOS = fakeStoreClient.getAllProducts();
         Category category = categoryRepository.findById(categoryId).orElseThrow(
                 () -> new CategoryNotFoundException("Category for the given id is not found")
         );

@@ -6,6 +6,7 @@ import dev.sandeep.EcomProductServiceDec23.exception.InvalidInputException;
 import dev.sandeep.EcomProductServiceDec23.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,18 +21,20 @@ public class ProductController {
     @Qualifier("productService")
     private ProductService productService; // field injection
 
+    @Cacheable(value = "product")
     @GetMapping
-    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(){
+    public List<ProductResponseDTO> getAllProducts(){
         List<ProductResponseDTO> products = productService.getAllProducts();
-        return ResponseEntity.ok(products);
+        return products;
     }
 
+    @Cacheable(value = "product", key = "#id")
     @GetMapping("/{id}")
-    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable("id") UUID id){
+    public ProductResponseDTO getProductById(@PathVariable("id") UUID id){
         if(id == null){
             throw new InvalidInputException("Input is not correct");
         }
-        return ResponseEntity.ok(productService.getProduct(id));
+        return productService.getProduct(id);
     }
 
     @PostMapping
